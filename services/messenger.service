@@ -1,0 +1,14 @@
+[Unit]
+Description=Messenger service
+After=network-online.target ssh.service multimon-ng.service
+
+[Service]
+User=jacek
+ExecStartPre=adb wait-for-device
+ExecStart=/home/jacek/projects/scripts/nasluch/messenger-script.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+

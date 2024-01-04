@@ -1,0 +1,12 @@
+[Unit]
+Description=Multimon-ng stqc service
+After=network-online.target ssh.service rtl_airband.service
+
+[Service]
+User=jacek
+ExecStart=/bin/bash /home/jacek/projects/scripts/nasluch/multimon-script.sh
+ExecStop=killall -s KILL multimon-ng
+
+[Install]
+WantedBy=multi-user.target
+

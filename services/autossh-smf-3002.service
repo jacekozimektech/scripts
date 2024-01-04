@@ -1,0 +1,17 @@
+[Unit]
+Description=Keeps a tunnel to smf
+After=network-online.target ssh.service
+
+[Service]
+User=jacek
+ExecStart=/usr/bin/autossh -M xx00 -N -o "ExitOnForwardFailure=yes" \
+                                -R 0.0.0.0:xx02:0.0.0.0:xx22 \
+                                -R 0.0.0.0:xx03:10.0.0.xx0:xx22 \
+                                -R 0.0.0.0:xx08:10.0.0.xx0:xx80 \
+                                -R 0.0.0.0:xx10:0.0.0.0:xx10 \
+                                -i /home/xxxxx/.ssh/id_ed25519.xxx \
+                                xxxxx@xx.xxx.xxx.xx -p xxxx
+ExecStop=killall -s KILL autossh
+
+[Install]
+WantedBy=multi-user.target
